@@ -19,7 +19,19 @@ const createUser = async (userData: authType) => {
     return result
 }
 
+// 2. get user (single user, all user)
+const getUser = async (id?: string, page?: number, limit?: number) => {
+    let result;
+    if (id) {
+        result = await authModel.findById(id)
+    } else if (page && limit) {
+        result = await authModel.find({ isBlocked: false }).skip((page - 1) * limit).limit(limit)
+    } else {
+        result = await authModel.find({ isBlocked: false })
+    }
+    return result
+}
 
 
-const authService = { createUser }
+const authService = { createUser, getUser }
 export default authService

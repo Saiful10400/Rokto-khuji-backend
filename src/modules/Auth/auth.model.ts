@@ -12,8 +12,9 @@ const authSchema = new Schema<authType>({
     district: { type: String, required: true },
     upazila: { type: String, required: true },
     last_donation_date: { type: Date },
-    status: { type: String, enum: ["Available", "Unavailable"], required: false,default: "Unavailable" },
-    role: { type: String, enum: ["Donor", "Volunteer", "Admin"], required: false,default:"Donor" }
+    status: { type: String, enum: ["Available", "Unavailable"], required: false, default: "Unavailable" },
+    role: { type: String, enum: ["Donor", "Volunteer", "Admin"], required: false, default: "Donor" },
+    isBlocked: { type: Boolean, required: false, default: false }
 }, { timestamps: true });
 
 const authModel = mongoose.model<authType>("auth", authSchema)

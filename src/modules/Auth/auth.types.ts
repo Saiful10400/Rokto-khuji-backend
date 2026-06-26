@@ -22,5 +22,6 @@ export type authType = {
     last_donation_date: Date;
     status: "Available" | "Unavailable";
     role: "Donor" | "Volunteer" | "Admin";
+    isBlocked:boolean
 
 }

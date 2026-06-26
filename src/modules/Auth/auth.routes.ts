@@ -6,6 +6,9 @@ const route=Router()
 // create user
 route.post("/create-user",authController.createUser)
 
+// get user (single,all user included)
+route.get("/get-user",authController.getuser)
+
 
 
 
