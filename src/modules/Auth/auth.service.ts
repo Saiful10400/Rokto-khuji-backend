@@ -11,7 +11,8 @@ const createUser = async (userData: authType) => {
     const lastDonationDate = new Date(userData.last_donation_date)
     lastDonationDate.setMonth(lastDonationDate.getMonth() + 3)
     const TodayDate = new Date()
-    const ElegableToDonate = TodayDate >= lastDonationDate
+    let ElegableToDonate = TodayDate >= lastDonationDate
+    if (userData.last_donation_date === undefined) ElegableToDonate = true
 
 
     const result = await authModel.create({ ...userData, status: ElegableToDonate ? "Available" : "Unavailable" })
@@ -20,5 +21,5 @@ const createUser = async (userData: authType) => {
 
 
 
-const authService = { createUser } 
+const authService = { createUser }
 export default authService
