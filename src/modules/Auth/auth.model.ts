@@ -2,8 +2,8 @@ import mongoose, { Schema } from "mongoose";
 import { authType } from "./auth.types";
 
 const authSchema = new Schema<authType>({
-    _id: { type: Schema.Types.ObjectId, required: false },
-    phone_number: { type: String, required: true },
+
+    phone_number: { type: String, required: true, unique: true },
     first_name: { type: String, required: true },
     last_name: { type: String, required: true },
     blood_group: { type: String, enum: ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"], required: true },
@@ -12,10 +12,10 @@ const authSchema = new Schema<authType>({
     district: { type: String, required: true },
     upazila: { type: String, required: true },
     last_donation_date: { type: Date },
-    status: { type: String, enum: ["Available", "Unavailable"], required: true },
-    role: { type: String, enum: ["Donor", "Volunteer", "Admin"], required: true }
-});
+    status: { type: String, enum: ["Available", "Unavailable"], required: false,default: "Unavailable" },
+    role: { type: String, enum: ["Donor", "Volunteer", "Admin"], required: false,default:"Donor" }
+}, { timestamps: true });
 
-const authModel=mongoose.model<authType>("auth",authSchema)
+const authModel = mongoose.model<authType>("auth", authSchema)
 
-export default authModel
+export default authModel  

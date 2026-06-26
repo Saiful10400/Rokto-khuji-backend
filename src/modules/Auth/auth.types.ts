@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 export type authType = {
-    _id: mongoose.Schema.Types.ObjectId;
+    _id?: mongoose.Schema.Types.ObjectId;
     phone_number: string;
     first_name: string;
     last_name: string;
